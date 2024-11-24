@@ -16,7 +16,7 @@ func textRunning(text string) {
 func main() {
 
 	ingat1 := "\nPergi menggunakan BAJU PUTIH \nPulang menggunakan BAJU MERAH \nDia rela di lempar dengan BATU \nDi lempar dengan KAYU \nDi lempar dengan TULANG ONTA \nUNTUK MENYEBARKAN ISLAM tapi \nislam sekarang semakin asing di mata umatNya sendiri, lebih condong dengan BUDAYA BARAT \napakah dirimu tidak malu kepada NABI MUHAMMAD SAW"
-	ingat2 := "\nBanyak yang bangga melakukan dosa, dengan dalkih saya tidak MUNAFIK"
+	ingat2 := "\nBanyak yang bangga melakukan dosa, dengan dalih saya tidak MUNAFIK"
 	ingat3 := "\nBanyak Orang Tua yang MALU ANAKNYA-NYA di nikahi dengan cara yang SEDERHANA \nTapi Tidak pernah MALU Anak-Nya di Pacari secara GRATISSSSS"
 	ingat4 := "\nMau tau bangkai BERNYAWA ? \nDia yang mengaku Islam, dan tahu arah Kiblat tapi MALAS melaksanakan Sholat"
 	ingat5 := "\nRajin SHOLAT tapi terus MAKSIAT"
