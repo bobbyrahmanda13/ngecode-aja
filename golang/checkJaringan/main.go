@@ -17,7 +17,7 @@ func main() {
 
 	for {
 		// Membuat context dengan timeout 5 detik
-		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+		ctx, cancel := context.WithTimeout(context.Background(), 50*time.Second)
 
 		fmt.Printf("[%s] Menjalankan ping...\n", time.Now().Format("15:04:05"))
 
@@ -42,6 +42,6 @@ func main() {
 		fmt.Println("-------------------------------------------")
 
 		// Jeda singkat sebelum memulai loop lagi agar tidak membebani sistem
-		time.Sleep(30 * time.Second)
+		time.Sleep(50 * time.Second)
 	}
 }
