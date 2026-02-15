@@ -14,7 +14,8 @@ type Sparepart struct {
 	Kode  string
 	Nama  string
 	Harga string
-	Stok  string
+	Tipe  string
+	Ket   string
 }
 
 func main() {
@@ -30,7 +31,7 @@ func main() {
 	// Cek apakah user lupa memasukkan kata kunci (-q)
 	if *kunciPtr == "" {
 		fmt.Println("⚠️  Error: Anda belum memasukkan kata kunci pencarian.")
-		fmt.Println("👉 Contoh: go run main.go -q \"oli\"")
+		fmt.Println("👉 Contoh: go run main.go -q \"nama\"")
 		os.Exit(1)
 	}
 
@@ -65,10 +66,11 @@ func main() {
 
 		// Ambil data dari kolom CSV
 		// baris[0] = Kode, baris[1] = Nama, baris[2] = Harga, baris[3] = Stok
-		if len(baris) >= 3 {
+		if len(baris) >= 4 {
 			kode := baris[0]
 			nama := baris[1]
 			harga := baris[2]
+			tipe := baris[3]
 
 			// Siapkan variabel penanda ketemu atau tidak
 			ketemu := false
@@ -89,10 +91,15 @@ func main() {
 				if strings.Contains(strings.ToLower(harga), kataKunci) {
 					ketemu = true
 				}
+			case "tipe":
+				if strings.Contains(strings.ToLower(tipe), kataKunci) {
+					ketemu = true
+				}
 			default: // "all"
 				if strings.Contains(strings.ToLower(kode), kataKunci) ||
 					strings.Contains(strings.ToLower(nama), kataKunci) ||
-					strings.Contains(strings.ToLower(harga), kataKunci) {
+					strings.Contains(strings.ToLower(harga), kataKunci) ||
+					strings.Contains(strings.ToLower(tipe), kataKunci) {
 					ketemu = true
 				}
 			}
@@ -104,7 +111,7 @@ func main() {
 					s.Harga = baris[2]
 				}
 				if len(baris) > 3 {
-					s.Stok = baris[3]
+					s.Tipe = baris[3]
 				}
 				hasilPencarian = append(hasilPencarian, s)
 			}
@@ -117,16 +124,15 @@ func main() {
 		fmt.Printf("Mencari '%s'... Tidak ditemukan.\n", *kunciPtr)
 		return
 	}
-
 	fmt.Printf("✅ Ditemukan %d barang dengan kata kunci '%s':\n\n", len(hasilPencarian), *kunciPtr)
 
 	// Gunakan Tabwriter supaya tabelnya lurus rapi
-	w := tabwriter.NewWriter(os.Stdout, 0, 0, 3, ' ', 0)
-	fmt.Fprintln(w, "KODE\tNAMA BARANG\tHARGA\tSTOK")
-	fmt.Fprintln(w, "----\t-----------\t-----\t----")
+	w := tabwriter.NewWriter(os.Stdout, 0, 0, 5, ' ', 0)
+	fmt.Fprintln(w, "KODE\tNAMA BARANG\tHARGA\tTIPE\tKET")
+	fmt.Fprintln(w, "----\t-----------\t-----\t--------\t--------")
 
 	for _, brg := range hasilPencarian {
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\n", brg.Kode, brg.Nama, brg.Harga, brg.Stok)
+		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%s\n", brg.Kode, brg.Nama, brg.Harga, brg.Tipe, brg.Ket)
 	}
 	w.Flush() // Cetak ke layar
 }
