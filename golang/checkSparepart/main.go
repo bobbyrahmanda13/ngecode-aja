@@ -68,6 +68,7 @@ func main() {
 		if len(baris) >= 2 {
 			kode := baris[0]
 			nama := baris[1]
+			harga := baris[2]
 
 			// Siapkan variabel penanda ketemu atau tidak
 			ketemu := false
@@ -82,6 +83,10 @@ func main() {
 				}
 			case "nama":
 				if strings.Contains(strings.ToLower(nama), kataKunci) {
+					ketemu = true
+				}
+			case "harga":
+				if strings.Contains(strings.ToLower(harga), kataKunci) {
 					ketemu = true
 				}
 			default: // "all"
