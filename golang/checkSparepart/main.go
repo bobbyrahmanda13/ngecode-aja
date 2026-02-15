@@ -30,7 +30,7 @@ func main() {
 	// Cek apakah user lupa memasukkan kata kunci (-q)
 	if *kunciPtr == "" {
 		fmt.Println("⚠️  Error: Anda belum memasukkan kata kunci pencarian.")
-		fmt.Println("👉 Contoh: go run main.go -q=\"oli\"")
+		fmt.Println("👉 Contoh: go run main.go -q \"oli\"")
 		os.Exit(1)
 	}
 
@@ -65,7 +65,7 @@ func main() {
 
 		// Ambil data dari kolom CSV
 		// baris[0] = Kode, baris[1] = Nama, baris[2] = Harga, baris[3] = Stok
-		if len(baris) >= 2 {
+		if len(baris) >= 3 {
 			kode := baris[0]
 			nama := baris[1]
 			harga := baris[2]
@@ -91,7 +91,8 @@ func main() {
 				}
 			default: // "all"
 				if strings.Contains(strings.ToLower(kode), kataKunci) ||
-					strings.Contains(strings.ToLower(nama), kataKunci) {
+					strings.Contains(strings.ToLower(nama), kataKunci) ||
+					strings.Contains(strings.ToLower(harga), kataKunci) {
 					ketemu = true
 				}
 			}
