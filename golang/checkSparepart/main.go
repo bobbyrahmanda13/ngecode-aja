@@ -128,7 +128,9 @@ func main() {
 
 	// Gunakan Tabwriter supaya tabelnya lurus rapi
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 5, ' ', 0)
+	// HEADER
 	fmt.Fprintln(w, "KODE\tNAMA BARANG\tHARGA\tTIPE\tKET")
+	// data
 	fmt.Fprintln(w, "----\t-----------\t-----\t--------\t--------")
 
 	for _, brg := range hasilPencarian {
