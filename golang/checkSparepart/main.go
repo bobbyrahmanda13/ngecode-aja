@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/csv"
 	"flag"
 	"fmt"
@@ -27,6 +28,15 @@ func main() {
 	tipePtr := flag.String("by", "all", "Cari di mana? (pilihan: 'kode', 'nama', 'all')")
 
 	flag.Parse() // Perintah untuk memproses input user
+
+	// MODIFIKASI: Jika flag -q kosong, minta input manual
+	if *kunciPtr == "" {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Masukkan kata kunci pencarian: ")
+		input, _ := reader.ReadString('\n')
+		input = strings.TrimSpace(input)
+		*kunciPtr = input
+	}
 
 	// Cek apakah user lupa memasukkan kata kunci (-q)
 	if *kunciPtr == "" {
