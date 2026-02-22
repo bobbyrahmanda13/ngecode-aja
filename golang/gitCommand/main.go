@@ -39,6 +39,7 @@ func main() {
 	pushCmd.Stderr = os.Stderr
 
 	errPush := pushCmd.Run()
+
 	if errPush != nil {
 		fmt.Printf("Gagal push: %v\n", errPush)
 	} else {
