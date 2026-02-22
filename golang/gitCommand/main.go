@@ -22,12 +22,12 @@ func main() {
 	// 3. Menjalankan git commit -m "pesan"
 	cmd := exec.Command("git", "commit", "-m", gitMessage)
 
-	// 4. Menjalankan git push
-	exec.Command("git", "push").Run()
-
 	// Menghubungkan output git ke terminal kita agar terlihat hasilnya
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
+
+	// 4. Menjalankan git push
+	exec.Command("git", "push").Run()
 
 	err := cmd.Run()
 	if err != nil {
