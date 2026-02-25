@@ -76,7 +76,7 @@ func main() {
 
 		// Ambil data dari kolom CSV
 		// baris[0] = Kode, baris[1] = Nama, baris[2] = Harga, baris[3] = Stok
-		if len(baris) >= 5 {
+		if len(baris) >= 4 {
 			kode := baris[0]
 			nama := baris[1]
 			harga := baris[2]
@@ -114,7 +114,7 @@ func main() {
 				if strings.Contains(strings.ToLower(kode), kataKunci) ||
 					strings.Contains(strings.ToLower(nama), kataKunci) ||
 					strings.Contains(strings.ToLower(harga), kataKunci) ||
-					strings.Contains(strings.ToLower(tipe), kataKunci) {
+					strings.Contains(strings.ToLower(tipe), kataKunci) ||
 					strings.Contains(strings.ToLower(ket), kataKunci) {
 					ketemu = true
 				}
