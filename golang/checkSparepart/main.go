@@ -76,11 +76,12 @@ func main() {
 
 		// Ambil data dari kolom CSV
 		// baris[0] = Kode, baris[1] = Nama, baris[2] = Harga, baris[3] = Stok
-		if len(baris) >= 4 {
+		if len(baris) >= 5 {
 			kode := baris[0]
 			nama := baris[1]
 			harga := baris[2]
 			tipe := baris[3]
+			ket := baris[4]
 
 			// Siapkan variabel penanda ketemu atau tidak
 			ketemu := false
@@ -105,11 +106,16 @@ func main() {
 				if strings.Contains(strings.ToLower(tipe), kataKunci) {
 					ketemu = true
 				}
+			case "ket":
+				if strings.Contains(strings.ToLower(ket), kataKunci) {
+					ketemu = true
+				}
 			default: // "all"
 				if strings.Contains(strings.ToLower(kode), kataKunci) ||
 					strings.Contains(strings.ToLower(nama), kataKunci) ||
 					strings.Contains(strings.ToLower(harga), kataKunci) ||
 					strings.Contains(strings.ToLower(tipe), kataKunci) {
+					strings.Contains(strings.ToLower(ket), kataKunci) {
 					ketemu = true
 				}
 			}
@@ -122,6 +128,9 @@ func main() {
 				}
 				if len(baris) > 3 {
 					s.Tipe = baris[3]
+				}
+				if len(baris) > 4 {
+					s.Ket = baris[4]
 				}
 				hasilPencarian = append(hasilPencarian, s)
 			}
